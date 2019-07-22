@@ -19,7 +19,7 @@ pip install -r requirements.txt
 Setup the local configurations:
 
 ```bash
-cp .env.example .env
+cp .env .env
 ```
 
 Create the database:
