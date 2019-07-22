@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Start a New Complain{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Divisions</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'division_topics' division.pk %}">{{ division.name }}</a></li>
+  <li class="breadcrumb-item active">New Complain</li>
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-success">Post</button>
+    </form>
+      
+
+{% endblock %}

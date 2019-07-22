@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Divisions</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Divisions</th>
+        <th>Complains</th>
+        <th>Topics</th>
+        <th>Last Complain</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for division in divisions %}
+            <tr>
+              <td>
+                <a href="{% url 'division_topics' division.pk %}">{{ division.name }}</a>
+                <small class="text-muted d-block">{{ division.description }}</small>
+              </td>
+              <td class="align-middle">
+                {{ division.get_complains_count }}
+              </td>
+              <td class="align-middle">
+                {{ division.topics.count }}
+              </td>
+              <td class="align-middle">
+                {% with complain=division.get_last_complain %}
+                {% if complain %}
+                  <small>
+                    <a href="{% url 'topic_complains' division.pk complain.topic.pk %}">
+                      By {{ complain.created_by.username }} at {{ complain.created_at }}
+                    </a>
+                  </small>
+                {% else %}
+                  <small class="text-muted">
+                    <em>No complains yet.</em>
+                  </small>
+                {% endif %}
+                {% endwith %}
+              </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
