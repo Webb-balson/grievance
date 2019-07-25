@@ -7,3 +7,28 @@ body {
 .navbar-brand {
     font-family: 'Libre Baskerville', serif;
   }
+
+#top-head{
+    margin-top: 10px;
+}
+#top-aside{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+footer {
+    background: #0093d4;
+    width: 100%;
+    color: #fff !important;
+    font-size: 12px;
+    position: relative;
+}
+#myFooter{
+    text-decoration: none;
+    color: #fff !important;
+}
+
+#footer-aside{
+    display: flex;
+    align-self: flex-end;
+}

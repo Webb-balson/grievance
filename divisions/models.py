@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import Truncator
+from django.urls import reverse
 import math
-
 
 # Create your models here.
 
@@ -53,6 +53,7 @@ class Topic(models.Model):
 class Complain(models.Model):
     message = models.TextField(max_length=4000)
     topic = models.ForeignKey(Topic, related_name='complains', on_delete=models.CASCADE)
+    resolve = models.ManyToManyField(User, related_name='resolve', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     created_by = models.ForeignKey(User, related_name='complains', on_delete=models.CASCADE)
@@ -61,3 +62,6 @@ class Complain(models.Model):
     def __str__(self):
         truncated_message = Truncator(self.message)
         return truncated_message.chars(30)
+
+    def get_absolute_url(self):
+        return reverse("divisions:topic_complains", args=[self.id])

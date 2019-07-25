@@ -6,15 +6,11 @@
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Divisions</a></li>
-  <li class="breadcrumb-item"><a href="{% url 'division_topics' topic.division.pk %}">{{ topic.division.name }}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'division_topics_user' topic.division.pk %}">{{ topic.division.name }}</a></li>
   <li class="breadcrumb-item active">{{ topic.subject }}</li>
 {% endblock %}
 
 {% block content %}
-
-    <div class="mb-4">
-        <a href="{% url 'reply_topic' topic.division.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
-    </div>
     
     {% for complain in topic.complains.all %}
     <div class="card mb-2 {% if forloop.first %}border-dark{% endif %}">

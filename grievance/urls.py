@@ -23,6 +23,7 @@ from divisions import views
 
 urlpatterns = [
     url(r'^$', views.DivisionListView.as_view(), name='home'),
+    # url(r'^resolve/$', views.resolve_complain, name="resolve_complain"),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
@@ -42,14 +43,19 @@ urlpatterns = [
     url(r'^reset/complete/$',
         auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
         name='password_reset_complete'),
-    # url(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
     url(r'^settings/password/$', auth_views.PasswordChangeView.as_view(template_name='password_change.html'),
         name='password_change'),
     url(r'^settings/password/done/$', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'),
-    url(r'^divisions/(?P<pk>\d+)/$', views.TopicListView.as_view(), name='division_topics'),    
+    
+    url(r'^divisions/(?P<pk>\d+)/$', views.division_topics, name='division_topics'),
+    url(r'^divisions/(?P<pk>\d+)/user/$', views.division_topics_user, name='division_topics_user'),
     url(r'^divisions/(?P<pk>\d+)/new/$', views.new_complain, name='new_complain'),
-    url(r'^divisions/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.ComplainListView.as_view(), name='topic_complains'),
+    
+    url(r'^divisions/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/new/$', views.complain_details, name='complain_details'),
+    url(r'^divisions/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.topic_complains, name='topic_complains'),
+    
+
     url(r'^divisions/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/reply/$', views.reply_topic, name='reply_topic'),
     path('admin/', admin.site.urls),
 ]

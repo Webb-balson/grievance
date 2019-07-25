@@ -11,8 +11,10 @@
 {% endblock %}
 
 {% block content %}
-
-{% if user.is_superuser %}
+  <div class="mb-4">
+    <a href="{% url 'new_complain' division.pk %}" class="btn btn-primary">New Complain</a>
+  </div>
+{% if not user.is_superuser %}
   <table class="table">
     <thead class="thead-light">
       <tr>
@@ -24,8 +26,8 @@
     </thead>
     <tbody>
     
-        {% for topic in topics %}
-            {% url 'topic_complains' division.pk topic.pk as topic_url %}
+        {% for topic in topics_user %}
+            {% url 'complain_details' division.pk topic.pk as topic_url %}
             <tr>
               <td>
                 <p class="mb-0">
@@ -41,5 +43,5 @@
   </table>
 {% include 'includes/pagination.html' %}
 {% endif %}
-  
+
 {% endblock %}

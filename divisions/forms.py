@@ -4,10 +4,10 @@ from .models import Topic, Complain
 class NewComplainForm(forms.ModelForm):
     message = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 5, 'placeholder': 'Enter your complain here...'}
+            attrs={'rows': 5, 'placeholder': 'Your complaint should have (Full Name), (USN-Student), (ID-Faculty), (Ward_USN-Parent), (StaffID-Staff)'}
         ), 
         max_length=4000,
-        help_text='The Textarea should have following fields to validate your complain: 1.Name 2. USN/StaffID 3. Other'
+        help_text='Note: Without proper details, your complaint will be invalidated.'
     )
 
     class Meta:
