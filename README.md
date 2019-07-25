@@ -23,7 +23,7 @@ cd grievance
 ```
 Create a .env file and setup the local configurations:
 ```bash
-cp .env .env
+cp .env.example .env
 ```
 Install the requirements:
 
